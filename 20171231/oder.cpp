@@ -7,22 +7,25 @@ char alpha[27];
 int chk[27];
 char ans[26];
 
-void permute(int now) {
+int permute(int now) {
 	if(now == r){
 		if (++p == f) {
 			for (int i = 0; i < r; i++)
 				printf("%c", ans[i]);
 			printf("\n");
+return 1;
 		}
+return 0;
 	}
 	for (int i = 0; i < n; i++) {
 		if (chk[i] == 0) {
 			ans[now] = i+65;
 			chk[i] = 1;
-			permute(now+1);
+			if(permute(now+1))return 1;
 			chk[i] = 0;
 		}
 	}
+return 0;
 }
 
 void combination(char *arr, int index, char *data, int i){
