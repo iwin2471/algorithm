@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <algorithm>
+#include <map>
 using namespace std;
+
 int arr[50000];
+map<int, int> m;
 
 int main() {
 	int n, q, tmp, j = 0;
@@ -32,12 +35,11 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		tmp += arr[i];
 		for (; tmp >= q_arr[j] && j < q; j++)
-			tmp_arr[q_arr[j]] = i + 1;
+			m[j] = i + 1;
 	}
-	for (int i = 0; i < q; i++) {
-		printf("%d\n", tmp_arr[original_q[i]]);
-	}
-		
+
+	for (j = 0; j < q; j++)
+		printf("%d\n", m[original_q[j]]);
 
 	return 0;
 }
