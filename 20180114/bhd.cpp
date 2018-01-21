@@ -1,4 +1,3 @@
-
 #include<stdio.h>
 #include<string.h>
 
@@ -8,7 +7,7 @@ long long int caw[SIZE] = { 0, };
 long long int input[SIZE];
 long long int cnt = 0;
 
-void push(int caw_num) {
+void push(long long int caw_num) {
 	if (top >= SIZE)
 		printf("overflow\n");
 	else
@@ -16,7 +15,6 @@ void push(int caw_num) {
 }
 
 void pop() {
-	cnt++;
 	if (top == 0)
 		printf("empty\n");
 	else
@@ -24,18 +22,19 @@ void pop() {
 }
 
 int main() {
-	int int_input, j = 0;
+	long long int int_input, j = 0;
 	scanf("%lld", &int_input);
 	while (scanf("%lld", &input[j++]) && j<int_input);
 
 	push(input[0]);
 
-	for (int i = 1; i < int_input; i++) {
-		while (caw[top - 1] < input[i] && top > 0)
+	for (long long int i = 1; i < int_input; i++) {
+		while (caw[top - 1] <= input[i] && top > 0)
 			pop();
+		if (top > 0) cnt += top;
 		push(input[i]);
 	}
 
-	printf("%lld", cnt + top - 1);
+	printf("%lld", cnt);
 	return 0;
 }
